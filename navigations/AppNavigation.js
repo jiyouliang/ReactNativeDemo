@@ -4,18 +4,8 @@ import {createAppContainer, createStackNavigator} from 'react-navigation'; // Ve
 import HomePage from './HomePage';
 import PropsPage from './PropsPage';
 import StatePage from './StatePage';
+import WidthHeightPage from './WidthHeightPage';
 
-
-class DetailsScreen extends React.Component {
-    render() {
-        return (
-            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                <Text>Details Screen>>>>>></Text>
-
-            </View>
-        );
-    }
-}
 
 const appStackNavigator = createStackNavigator(
     {
@@ -27,6 +17,9 @@ const appStackNavigator = createStackNavigator(
         },
         StatePage: {
             screen: StatePage,
+        },
+        WidthHeightPage:{
+            screen: WidthHeightPage
         },
     },
     {

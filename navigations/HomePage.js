@@ -2,12 +2,15 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
+
+
 export default class HomePage extends React.Component {
     render() {
         return (
             <View style={{flexDirection: 'column', flex: 1, alignItems: 'stretch'}}>
-                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('PropsPage')}>Props</Text>
-                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('StatePage')}>State</Text>
+                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('PropsPage')}>Props属性</Text>
+                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('StatePage')}>State状态</Text>
+                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('WidthHeightPage')}>宽度和高度</Text>
 
             </View>
         );
