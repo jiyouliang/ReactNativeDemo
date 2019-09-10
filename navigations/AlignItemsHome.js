@@ -54,6 +54,7 @@ const appStackNavigator = createStackNavigator(
             screen: AlignItemsPage5,
         },
 
+
     },
     {
         initialRouteName: 'home',

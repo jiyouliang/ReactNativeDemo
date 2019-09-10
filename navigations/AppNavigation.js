@@ -10,6 +10,7 @@ import MixedLayoutPage from './MixedLayoutPage';
 import JustifyContentPage from './JustifyContentPage';
 import AlignItemsHome from './AlignItemsHome';
 import AlignItemsWrapper from './AlignItemsWrapper';
+import AlignSelfPage from './AlignSelfPage';
 
 export default class HomePage extends React.Component {
     render() {
@@ -30,6 +31,8 @@ export default class HomePage extends React.Component {
 
                 <Text style={styles.itemStyle}
                       onPress={() => this.props.navigation.navigate('AlignItemsWrapper')}>alignItems</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('AlignSelfPage')}>alignSelf</Text>
 
 
             </View>
@@ -64,6 +67,9 @@ const appStackNavigator = createStackNavigator(
         },
         AlignItemsWrapper: {
             screen: AlignItemsWrapper
+        },
+        AlignSelfPage: {
+            screen: AlignSelfPage,
         },
     },
     {
