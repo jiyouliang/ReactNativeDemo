@@ -5,6 +5,7 @@ import HomePage from './HomePage';
 import PropsPage from './PropsPage';
 import StatePage from './StatePage';
 import WidthHeightPage from './WidthHeightPage';
+import FlexWidthHeightPage from './FlexWidthHeightPage';
 
 
 const appStackNavigator = createStackNavigator(
@@ -18,8 +19,11 @@ const appStackNavigator = createStackNavigator(
         StatePage: {
             screen: StatePage,
         },
-        WidthHeightPage:{
+        WidthHeightPage: {
             screen: WidthHeightPage
+        },
+        FlexWidthHeightPage: {
+            screen: FlexWidthHeightPage
         },
     },
     {

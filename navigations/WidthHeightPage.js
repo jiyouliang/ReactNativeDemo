@@ -11,6 +11,8 @@ export default class WidthHeightPage extends React.Component{
                     <Text style={{width:60, height:60, backgroundColor:'powderblue', fontWeight:'bold'}}>width:50, height:50</Text>
                     <Text style={{width:100, height:100, backgroundColor:'steelblue', fontWeight:'bold'}}>width:100, height:100</Text>
                 </View>
+                <Text>Flex Dimensions，通过flex控制view大小，让view具有动态宽度或者高度</Text>
+
             </View>
         );
     }

@@ -8,10 +8,14 @@ export default class HomePage extends React.Component {
     render() {
         return (
             <View style={{flexDirection: 'column', flex: 1, alignItems: 'stretch'}}>
-                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('PropsPage')}>Props属性</Text>
-                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('StatePage')}>State状态</Text>
-                <Text style={styles.itemStyle} onPress={() => this.props.navigation.navigate('WidthHeightPage')}>宽度和高度</Text>
-
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('PropsPage')}>Props属性</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('StatePage')}>State状态</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('WidthHeightPage')}>宽度和高度</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('FlexWidthHeightPage')}>flex宽度和高度</Text>
             </View>
         );
     }
@@ -25,7 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#c3c3c3',
         lineHeight: 30,
         textAlign: 'center',
-        fontWeight:'bold'
+        fontWeight: 'bold'
 
     },
 
