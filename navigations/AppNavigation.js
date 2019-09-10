@@ -8,6 +8,8 @@ import WidthHeightPage from './WidthHeightPage';
 import FlexWidthHeightPage from './FlexWidthHeightPage';
 import MixedLayoutPage from './MixedLayoutPage';
 import JustifyContentPage from './JustifyContentPage';
+import AlignItemsHome from './AlignItemsHome';
+import AlignItemsWrapper from './AlignItemsWrapper';
 
 export default class HomePage extends React.Component {
     render() {
@@ -25,6 +27,9 @@ export default class HomePage extends React.Component {
                       onPress={() => this.props.navigation.navigate('JustifyContentPage')}>justifyContent</Text>
                 <Text style={styles.itemStyle}
                       onPress={() => this.props.navigation.navigate('MixedLayoutPage')}>ReactNative实现复杂布局</Text>
+
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('AlignItemsWrapper')}>alignItems</Text>
 
 
             </View>
@@ -56,6 +61,9 @@ const appStackNavigator = createStackNavigator(
 
         JustifyContentPage: {
             screen: JustifyContentPage
+        },
+        AlignItemsWrapper: {
+            screen: AlignItemsWrapper
         },
     },
     {
