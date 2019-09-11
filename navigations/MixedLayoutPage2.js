@@ -15,10 +15,11 @@ class ImageView extends React.Component {
 
 // 价格
 class PriceView extends React.Component {
+
     render() {
         return (
             <View style={[styles.horizontalContainer]}>
-                <Text style={styles.price}>¥ 2999</Text>
+                <Text style={styles.price}>{this.props.currency} {this.props.price}</Text>
                 <Text style={[styles.pricePoint, {alignSelf: 'flex-end'}]}>.00</Text>
 
             </View>
@@ -30,13 +31,21 @@ class PriceView extends React.Component {
 class DescView extends React.Component {
     render() {
         return (
-            <Text style={[styles.commonText, styles.marginBtm]}>高通骁龙855 双立体声扬声器</Text>
+            <Text style={[styles.commonText, styles.marginBtm]}>{this.props.title}</Text>
         );
+    }
+}
+
+// 灰色背景文字
+class ConfitText extends React.Component{
+    render() {
+        return (<Text style={styles.grayBgTest}>{this.props.title}</Text>);
     }
 }
 
 export default class MixedLayoutPage2 extends React.Component {
     render() {
+        this
         return (
             <View style={styles.container}>
                 <ImageView/>
@@ -47,12 +56,12 @@ export default class MixedLayoutPage2 extends React.Component {
                         <Text style={styles.phoneName}>一加 7</Text>
                     </View>
                     <View style={[styles.horizontalContainer, styles.marginBtm]}>
-                        <Text style={styles.grayBgTest}>6.4英寸</Text>
-                        <Text style={styles.grayBgTest}>8G运存</Text>
-                        <Text style={styles.grayBgTest}>256G</Text>
+                        <ConfitText title='6.4英寸'/>
+                        <ConfitText title='8G运存'/>
+                        <ConfitText title='256G'/>
                     </View>
-                    <DescView />
-                    <PriceView/>
+                    <DescView title='高通骁龙855 双立体声扬声器'/>
+                    <PriceView currency='¥' price='3999'/>
                 </View>
             </View>
         );
