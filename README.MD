@@ -4,7 +4,7 @@
 
 ![](capture/1.png)    ![](capture/2.png)
 
-![](capture/3.png)
+![](capture/3.png)    ![](capture/4.gif)
 
 
 ### 2、install & run
