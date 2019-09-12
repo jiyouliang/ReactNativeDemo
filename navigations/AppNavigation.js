@@ -15,6 +15,7 @@ import MixedLayoutPage2 from './MixedLayoutPage2';
 import FlexWrapPage from './FlexWrapPage';
 import ListViewPage from './ListViewPage';
 import ActivityIndicatorPage from './ActivityIndicatorPage';
+import NetworkManagerPage from './NetworkManagerPage';
 
 export default class HomePage extends React.Component {
     render() {
@@ -45,7 +46,9 @@ export default class HomePage extends React.Component {
                 <Text style={styles.itemStyle}
                       onPress={() => this.props.navigation.navigate('ListViewPage')}>ListView（Deprecated）</Text>
                 <Text style={styles.itemStyle}
-                      onPress={() => this.props.navigation.navigate('ActivityIndicatorPage')}>ActivityIndicator）</Text>
+                      onPress={() => this.props.navigation.navigate('ActivityIndicatorPage')}>ActivityIndicator</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('NetworkManagerPage')}>网络请求相关</Text>
 
 
             </View>
@@ -95,6 +98,9 @@ const appStackNavigator = createStackNavigator(
         },
         ActivityIndicatorPage: {
             screen: ActivityIndicatorPage,
+        },
+        NetworkManagerPage: {
+            screen: NetworkManagerPage,
         },
     },
     {

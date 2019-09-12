@@ -37,14 +37,55 @@ class DescView extends React.Component {
 }
 
 // 灰色背景文字
-class ConfitText extends React.Component{
+class ConfitText extends React.Component {
     render() {
         return (<Text style={styles.grayBgTest}>{this.props.title}</Text>);
     }
 }
 
-export default class MixedLayoutPage2 extends React.Component {
+
+
+export default class AsyncGetNetDataPage extends React.Component {
+
+    request(url) {
+        console.debug("request>>>>>>>>>>>");
+        const promise = new Promise(function (resolve, reject) {
+            const handler = function () {
+                if (this.readyState !== 4) {
+                    return;
+                }
+                if (this.status === 200) {
+                    resolve(this.response);
+                } else {
+                    reject(new Error(this.statusText));
+                }
+            };
+            const client = new XMLHttpRequest();
+            client.open("GET", url);
+            client.onreadystatechange = handler;
+            client.responseType = "json";
+            client.setRequestHeader("Accept", "application/json");
+            client.send();
+
+        });
+
+        return promise;
+    }
+
+    onSuccess(response){
+
+    }
+
+    async asyncHttp(url) {
+        const jsonOjb = await this.request(url).then(function (response) {
+            return response;
+        });
+        console.debug("getJSON获取并返回数据>>>>>>>>>  " + JSON.stringify(jsonOjb));
+    }
+
     render() {
+        const url = 'http://47.106.182.74:8000/fmap/test/testProduct';
+        this.asyncHttp(url);
         return (
             <View style={styles.container}>
                 <ImageView/>
