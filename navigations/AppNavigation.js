@@ -14,6 +14,7 @@ import AlignSelfPage from './AlignSelfPage';
 import MixedLayoutPage2 from './MixedLayoutPage2';
 import FlexWrapPage from './FlexWrapPage';
 import ListViewPage from './ListViewPage';
+import ActivityIndicatorPage from './ActivityIndicatorPage';
 
 export default class HomePage extends React.Component {
     render() {
@@ -43,6 +44,8 @@ export default class HomePage extends React.Component {
                       onPress={() => this.props.navigation.navigate('FlexWrapPage')}>flexWrap</Text>
                 <Text style={styles.itemStyle}
                       onPress={() => this.props.navigation.navigate('ListViewPage')}>ListView（Deprecated）</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('ActivityIndicatorPage')}>ActivityIndicator）</Text>
 
 
             </View>
@@ -89,6 +92,9 @@ const appStackNavigator = createStackNavigator(
         },
         ListViewPage: {
             screen: ListViewPage,
+        },
+        ActivityIndicatorPage: {
+            screen: ActivityIndicatorPage,
         },
     },
     {
