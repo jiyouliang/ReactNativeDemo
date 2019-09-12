@@ -2,13 +2,16 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createAppContainer, createStackNavigator} from 'react-navigation'; // Version can be specified in package.json
 import AsyncGetNetDataPage from './AsyncGetNetDataPage';
+import FetchPage from './FetchPage';
 
 export default class NetworkPages extends React.Component {
     render() {
         return (
             <View>
                 <Text style={styles.itemStyle}
-                      onPress={() => this.props.navigation.navigate('AsyncGetNetDataPage')}>async请求网络数据</Text>
+                      onPress={() => this.props.navigation.navigate('AsyncGetNetDataPage')}>async请求网络数据刷新页面</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('FetchPage')}>fetch请求网络数据</Text>
 
             </View>
         );
@@ -25,7 +28,9 @@ const appStackNavigator = createStackNavigator(
         AsyncGetNetDataPage: {
             screen: AsyncGetNetDataPage,
         },
-
+        FetchPage: {
+            screen: FetchPage,
+        },
 
 
     },

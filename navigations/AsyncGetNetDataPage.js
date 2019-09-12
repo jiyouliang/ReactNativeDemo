@@ -1,14 +1,14 @@
 import React from "react";
-import {Text, View, StyleSheet} from "react-native";
-import {ActivityIndicator} from 'react-native';
+import {Button, ActivityIndicator, StyleSheet, Text, View} from "react-native";
 import {Image} from 'react-native-elements';
+import Toast, {DURATION} from 'react-native-easy-toast'
 
 
 // 图片
 class ImageView extends React.Component {
     render() {
         return (
-            <Image style={styles.imageStyle} source={require('../img/phone.jpg')}/>
+            <Image style={styles.imageStyle} source={{uri: "http://47.106.182.74/demo/images/phone1.webp"}}/>
         );
     }
 }
@@ -20,7 +20,7 @@ class PriceView extends React.Component {
         return (
             <View style={[styles.horizontalContainer]}>
                 <Text style={styles.price}>{this.props.currency} {this.props.price}</Text>
-                <Text style={[styles.pricePoint, {alignSelf: 'flex-end'}]}>.00</Text>
+                <Text style={[styles.pricePoint, {alignSelf: 'flex-end'}]}>.{this.props.point}</Text>
 
             </View>
         );
@@ -44,10 +44,23 @@ class ConfitText extends React.Component {
 }
 
 
-
+const URL = 'http://47.106.182.74:8000/fmap/test/testProduct';
 export default class AsyncGetNetDataPage extends React.Component {
 
-    request(url) {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+            error: false,
+            data: {},
+            proUri:''
+        }
+        this.asyncHttp(URL);
+    }
+
+    requestData(url) {
+        this.loading();
         console.debug("request>>>>>>>>>>>");
         const promise = new Promise(function (resolve, reject) {
             const handler = function () {
@@ -72,20 +85,68 @@ export default class AsyncGetNetDataPage extends React.Component {
         return promise;
     }
 
-    onSuccess(response){
-
-    }
-
     async asyncHttp(url) {
-        const jsonOjb = await this.request(url).then(function (response) {
+        const obj = this;
+        const jsonOjb = await this.requestData(url).then(function (response) {
+
+            // 服务器返回数据太快，延时为了看loading
+            setTimeout(function () {
+                // 修改数据，刷新页面
+                obj.setState({
+                    isLoading: false,
+                    data: response["data"],
+                });
+            }, 1000);
             return response;
+        }, function (err) {
+            // 服务器返回数据太快，延时为了看loading
+            setTimeout(function () {
+
+                console.debug("请求失败>>>" + err.toString());
+                obj.setState({
+                    error: true
+                });
+            }, 1000);
         });
         console.debug("getJSON获取并返回数据>>>>>>>>>  " + JSON.stringify(jsonOjb));
     }
 
-    render() {
-        const url = 'http://47.106.182.74:8000/fmap/test/testProduct';
-        this.asyncHttp(url);
+    loading() {
+        return (
+            <View style={{alignItems: 'center', alignContent: 'center'}}>
+                <ActivityIndicator animating={true} color='skyblue' size='large'/>
+            </View>
+        );
+    }
+
+    showError() {
+        return (
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+                <Button title='请求失败'
+                        onPress={() => {
+                            this.setState({
+                                isLoading: true,
+                                error: false
+                            });
+                            this.asyncHttp(URL);
+                        }}
+                        style={{
+                            alignSelf: 'center',
+                            fontSize: 20,
+                            borderRadius: 4,
+                            backgroundColor: 'skyblue',
+                            color: 'white'
+                        }}/>
+            </View>
+        );
+    }
+
+    // 成功
+    readerView() {
+        let data = this.state.data;
+        let imgUrl = data['img_url'];
+        let infoList = this.state.data["info_list"];
+
         return (
             <View style={styles.container}>
                 <ImageView/>
@@ -93,18 +154,30 @@ export default class AsyncGetNetDataPage extends React.Component {
                     <View style={[styles.horizontalContainer, styles.marginBtm, {alignItems: 'center'}]}>
                         <Image style={{width: 50, height: 16}}
                                source={{uri: 'https://img11.360buyimg.com/jdphoto/s88x28_jfs/t1/66511/3/2872/1955/5d118f22Edc5c0ea0/dd426d77193773bc.png'}}/>
-                        <Text style={styles.phoneName}>一加 7</Text>
+
+                        <Text style={styles.phoneName}>{data['title']}</Text>
                     </View>
                     <View style={[styles.horizontalContainer, styles.marginBtm]}>
-                        <ConfitText title='6.4英寸'/>
-                        <ConfitText title='8G运存'/>
-                        <ConfitText title='256G'/>
+                        <ConfitText title={infoList[0]}/>
+                        <ConfitText title={infoList[1]}/>
+                        <ConfitText title={infoList[2]}/>
                     </View>
-                    <DescView title='高通骁龙855 双立体声扬声器'/>
-                    <PriceView currency='¥' price='3999'/>
+                    <DescView title={this.state.data['desc']}/>
+                    <PriceView currency='¥' price={data["price"].split('.')[0]} point={data["price"].split('.')[1]}/>
                 </View>
             </View>
         );
+    }
+
+    render() {
+        if (this.state.isLoading && !this.state.error) {
+            //显示加载中
+            return this.loading();
+        } else if (this.state.error) {
+            //失败
+            return this.showError();
+        }
+        return this.readerView();
     }
 }
 
