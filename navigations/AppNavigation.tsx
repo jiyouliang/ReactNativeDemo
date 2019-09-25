@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, View, Text, StyleSheet} from 'react-native';
-import {createAppContainer, createStackNavigator} from 'react-navigation'; // Version can be specified in package.json
+import {createAppContainer, createStackNavigator, NavigationScreenProps} from 'react-navigation'; // Version can be specified in package.json
 // import HomePage from './HomePage';
 import PropsPage from './PropsPage';
 import StatePage from './StatePage';
@@ -16,8 +16,24 @@ import FlexWrapPage from './FlexWrapPage';
 import ListViewPage from './ListViewPage';
 import ActivityIndicatorPage from './ActivityIndicatorPage';
 import NetworkManagerPage from './NetworkManagerPage';
+import LoginPage from './LoginPage';
+import { NavigationStackScreenOptions } from 'react-navigation-stack/src/types';
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
+
+    public static navigationOptions = (
+        props: NavigationScreenProps
+      ): NavigationStackScreenOptions => {
+        const { params } = props.navigation.state
+    
+        return {
+          header: null
+        }
+      }
+    constructor(props){
+        super(props)
+    }
+
     render() {
         return (
             <View style={{flexDirection: 'column', flex: 1, alignItems: 'stretch'}}>
@@ -49,6 +65,8 @@ export default class HomePage extends React.Component {
                       onPress={() => this.props.navigation.navigate('ActivityIndicatorPage')}>ActivityIndicator</Text>
                 <Text style={styles.itemStyle}
                       onPress={() => this.props.navigation.navigate('NetworkManagerPage')}>网络请求相关</Text>
+                <Text style={styles.itemStyle}
+                      onPress={() => this.props.navigation.navigate('LoginPage')}>navigation导航器相关</Text>
 
 
             </View>
@@ -102,6 +120,9 @@ const appStackNavigator = createStackNavigator(
         NetworkManagerPage: {
             screen: NetworkManagerPage,
         },
+        LoginPage:{
+            screen:LoginPage
+        },
     },
     {
         initialRouteName: 'Home',
@@ -138,5 +159,6 @@ const styles = StyleSheet.create({
         color: '#333333',
         marginBottom: 5,
     },
-});
+})
 
+export default HomePage
