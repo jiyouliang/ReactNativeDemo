@@ -1,13 +1,24 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+
+/**
+ * Store - holds our state - THERE IS ONLY ONE STATE 
+ * Action - State can be modified using actions - SIMPLE OBJECTS 
+ * Dispatcher - Action needs to be sent by someone - known as dispatching an action
+ * Reducer - receives the action and modifies the state to give us a new state 
+ *  - pure functions 
+ *  - only mandatory argument is the 'type' 
+ * Subscriber - listens for state change to update the ui  
+ */
+
+ 
 
 export default class AppCounter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 0
-    };
-  }
+  state = {
+    value: 0
+  };
 
   //增加
   private increase = () => {
