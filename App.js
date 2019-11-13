@@ -24,27 +24,13 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
     render() {
+        console.log(this.props.message)
+        console.log(this.props.img)
         return (
-            <AppContainer/>
+            <AppContainer 
+            messageProp={this.props.message}
+            imgProp={this.props.img}/>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});
