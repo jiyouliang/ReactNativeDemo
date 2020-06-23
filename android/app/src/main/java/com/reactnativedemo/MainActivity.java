@@ -1,5 +1,7 @@
 package com.reactnativedemo;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
@@ -25,7 +27,7 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
-        return new ReactActivityDelegate(this, getMainComponentName()){
+        return new ReactActivityDelegate(this, getMainComponentName()) {
             @Nullable
             @Override
             protected Bundle getLaunchOptions() {
@@ -38,7 +40,14 @@ public class MainActivity extends ReactActivity {
             }
 
 
-
         };
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent intent = new Intent("onConfigurationChanged");
+        intent.putExtra("newConfig", newConfig);
+        this.sendBroadcast(intent);
     }
 }

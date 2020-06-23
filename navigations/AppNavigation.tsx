@@ -16,6 +16,7 @@ import AlignItemsHome from "./AlignItemsHome";
 import AlignItemsWrapper from "./AlignItemsWrapper";
 import AlignSelfPage from "./AlignSelfPage";
 import MixedLayoutPage2 from "./MixedLayoutPage2";
+import MixedLayoutPage3 from "./MixedLayoutPage3";
 import FlexWrapPage from "./FlexWrapPage";
 import ListViewPage from "./ListViewPage";
 import ActivityIndicatorPage from "./ActivityIndicatorPage";
@@ -26,6 +27,8 @@ import { NavigationStackScreenOptions } from "react-navigation-stack/src/types";
 import FlatListPage from "./FlatListPage";
 import { ScrollView } from "react-native-gesture-handler";
 import SimpleReduxPage from "./redux/SimpleReduxPage";
+import NativeCallbackRN from "./NativeCallbackRN"
+import OrientationAndSizeScreen from './OrientationAndSizeScreen'
 
 export interface HomePageProps {
   messageProp?: string;
@@ -90,6 +93,12 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
           onPress={() => this.props.navigation.navigate("MixedLayoutPage")}
         >
           ReactNative实现复杂布局
+        </Text>
+        <Text
+          style={styles.itemStyle}
+          onPress={() => this.props.navigation.navigate("MixedLayoutPage3")}
+        >
+          ReactNative实现复杂布局3
         </Text>
         <Text
           style={styles.itemStyle}
@@ -162,6 +171,18 @@ class HomePage extends React.Component<HomePageProps, HomePageState> {
         >
           SimpleReduxPage
         </Text>
+        <Text
+          style={styles.itemStyle}
+          onPress={() => this.props.navigation.navigate("NativeCallbackRN")}
+        >
+          Native回调RN
+        </Text>
+        <Text
+          style={styles.itemStyle}
+          onPress={() => this.props.navigation.navigate("OrientationAndSizeScreen")}
+        >
+          屏幕方向、大小
+        </Text>
         
         </ScrollView>
         
@@ -203,6 +224,9 @@ const appStackNavigator = createStackNavigator(
     MixedLayoutPage2: {
       screen: MixedLayoutPage2
     },
+    MixedLayoutPage3: {
+      screen: MixedLayoutPage3
+    },
     FlexWrapPage: {
       screen: FlexWrapPage
     },
@@ -225,6 +249,8 @@ const appStackNavigator = createStackNavigator(
       screen:SimpleReduxPage
     },
     ReactPassToRN,
+    NativeCallbackRN,
+    OrientationAndSizeScreen,
   },
   {
     initialRouteName: "Home"
